@@ -38,7 +38,7 @@ public class Reg_movie_Controller {
 	@RequestMapping("/reg_movie_insert")
 	public String reg_movie_insert(@RequestParam HashMap<String, String> param, Model model) {
 		System.out.println("@@@### reg_movie_insert() start");
-		System.out.println("@@@### 영화제목 뷰에서 컨트롤러로 한글깨지니===>"+param.get("m_title"));
+		System.out.println("@@@### 영화제목 뷰에서 컨트롤러로 한글깨지니?===>"+param.get("m_title"));
         
 		service.reg_movie(param);
 		
@@ -94,7 +94,7 @@ public class Reg_movie_Controller {
 	}	
 	
 	
-	//0526 에이젝스 체크 - 근지
+	//0526 정렬 에이젝스 체크 - 근지
 	@RequestMapping("/ajax")
 	public String ajax(HttpServletRequest request, Model model) {
 		System.out.println("request 값 제대로 나옴??? ajax ===>"+request.getParameter("kind"));
@@ -113,6 +113,7 @@ public class Reg_movie_Controller {
 			}
 		}
 		
+		// 정렬순 dao에 보내기 위해 담음
 		model.addAttribute("sort", sort);
 		
 		ArrayList<MovieDto> list_sort = service.list_sort(model);
