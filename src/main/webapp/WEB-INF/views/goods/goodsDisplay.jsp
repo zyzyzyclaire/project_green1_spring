@@ -88,7 +88,7 @@
 				<td>${goods.g_price}</td>
 			</tr>
 		<form method="post" action="buy" name="goods_frm">
-			<input type="hidden" name="u_id" value="zyzyzy">	<%-- 0527 임시로 id 설정하여 같이 보냄 - 근지 --%>
+			<input type="hidden" name="u_id" value="wjdcksgml">	<%-- 0527 임시로 id 설정하여 같이 보냄 - 근지 --%>
 			<input type="hidden" name="g_code" value="${goods.g_code}">
 			<input type="hidden" name="g_name" value="${goods.g_name}">
 			<input type="hidden" name="g_price" value="${goods.g_price}" id="g_price">

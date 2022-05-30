@@ -15,4 +15,7 @@ public interface Reg_movie_Service {
 	public MovieDto show(HashMap<String, String> param);
 
 	public ArrayList<MovieDto> list_sort(Model model);
+	
+	public MovieDto getMax_m_code();
+	public void screen(HashMap<String, String> param);
 }

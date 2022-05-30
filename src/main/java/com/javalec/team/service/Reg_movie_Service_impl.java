@@ -64,4 +64,18 @@ public class Reg_movie_Service_impl implements Reg_movie_Service {
 		return list_sort;
 	}
 	
+	@Override
+	public MovieDto getMax_m_code() {
+		Reg_movie_Dao dao = sqlSession.getMapper(Reg_movie_Dao.class);
+		MovieDto dto = dao.getMax_m_code();
+		
+		return dto;
+	}
+
+	@Override
+	public void screen(HashMap<String, String> param) {
+		Reg_movie_Dao dao = sqlSession.getMapper(Reg_movie_Dao.class);
+		dao.screen(param);
+	}
+	
 }

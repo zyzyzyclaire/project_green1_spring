@@ -39,8 +39,24 @@ public class Reg_movie_Controller {
 	public String reg_movie_insert(@RequestParam HashMap<String, String> param, Model model) {
 		System.out.println("@@@### reg_movie_insert() start");
 		System.out.println("@@@### 영화제목 뷰에서 컨트롤러로 한글깨지니?===>"+param.get("m_title"));
-        
+
+		
 		service.reg_movie(param);
+		
+		//0530 방금 만든 영화 코드 얻어서 상영에 넣기 위해 - 근지
+		MovieDto dto = service.getMax_m_code();
+		String max = dto.getM_code();
+		param.put("m_code", max);
+//		System.out.println("m_code 맥스로========>"+max);
+		
+		//0530 영화 추가할 때 상영 랜덤(1~4)으로 넣기 - 근지
+		int ran = (int)(Math.random()*4)+1;
+		for (int i = 0; i < ran; i++) {
+			param.put("h_num", (int)(Math.random()*4)+1+"");
+			service.screen(param);
+		}
+		
+		
 		
 		return "redirect:movie_list";
 	}

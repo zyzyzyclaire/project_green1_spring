@@ -51,7 +51,6 @@ public class GoodsController {
 		return "goods/goodsDisplay";
 	}
 	
-	
 	@RequestMapping("/buy")
 	public String buy(@RequestParam HashMap<String, String> param,HttpServletRequest request,Model model) {
 		String[] cart_listc_code = null;
@@ -63,8 +62,9 @@ public class GoodsController {
 			for (int i = 0; i < cart_listc_code.length; i++) {
 				int price = buylist.get(i).getG_price()*buylist.get(i).getC_amount();
 				buylist.get(i).setG_price(price);
+				param.put("u_id", "wjdcksgml");	// 0530 임시로 id값 넣음 - 근지
 				param.put("c_code", cart_listc_code[i]);
-				param.put("g_code",Integer.toString( buylist.get(i).getC_amount()));
+				param.put("g_code",Integer.toString( buylist.get(i).getG_code()));
 				param.put("c_amount", Integer.toString(buylist.get(i).getC_amount()));
 				param.put("g_price", Integer.toString(price));
 				//System.out.println(param.get("c_code"));
