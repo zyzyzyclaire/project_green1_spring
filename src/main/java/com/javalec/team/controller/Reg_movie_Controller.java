@@ -61,17 +61,17 @@ public class Reg_movie_Controller {
 		return "redirect:movie_list";
 	}
 
-//	에이젝스 사용 후 필요없게 됨
-//	//0525 관리자 영화 리스트 보기 - 근지
-//	@RequestMapping("/movie_list")
-//	public String movie_list(Model model) {
-//		System.out.println("@@@### reg_movie()");
-//		
-//		ArrayList<MovieDto> list = service.list();
-//		model.addAttribute("list", list);
-//		
-//		return "reg_movie/movie_list";
-//	}
+	//에이젝스 사용 후 필요없게 됨 - 다시 필요함
+	//0525 관리자 영화 리스트 보기 - 근지
+	@RequestMapping("/movie_list")
+	public String movie_list(Model model) {
+		System.out.println("@@@### reg_movie()");
+		
+		ArrayList<MovieDto> list = service.list();
+		model.addAttribute("list", list);
+		
+		return "reg_movie/movie_list";
+	}
 	
 	
 	//0525 관리자 영화 수정 - 근지
@@ -101,13 +101,13 @@ public class Reg_movie_Controller {
 		return "redirect:movie_list";	
 	}
 	
-	//0526 에이젝스 사용시 첫화면. 기본값은 order by 최신순 - 근지
-	@RequestMapping("/movie_list")
-	public String movie_list(HttpServletRequest request, Model model) {
-		System.out.println("request 값 제대로 나옴??? movie_list ===>"+request.getParameter("kind"));
-		
-		return "reg_movie/movie_list";
-	}	
+//	//0526 에이젝스 사용시 첫화면. 기본값은 order by 최신순 - 근지 - 이게 필요 없어짐
+//	@RequestMapping("/movie_list")
+//	public String movie_list(HttpServletRequest request, Model model) {
+//		System.out.println("request 값 제대로 나옴??? movie_list ===>"+request.getParameter("kind"));
+//		
+//		return "reg_movie/movie_list";
+//	}	
 	
 	
 	//0526 정렬 에이젝스 체크 - 근지
@@ -135,6 +135,19 @@ public class Reg_movie_Controller {
 		ArrayList<MovieDto> list_sort = service.list_sort(model);
 		model.addAttribute("list_sort", list_sort);
 		return "reg_movie/movie_list2";
+	}
+	
+	//0531 영화 검색 - 근지
+	@RequestMapping("/serch_mov")
+	public String serch_mov(HttpServletRequest request, Model model) {
+		System.out.println("검색 내용=====>"+request.getParameter("serch_mov"));
+		
+		model.addAttribute("serch_mov",request.getParameter("serch_mov"));
+		
+		ArrayList<MovieDto> serched_mov = service.serch_mov(model);
+		model.addAttribute("list", serched_mov);
+		
+		return "reg_movie/movie_list";
 	}
 
 }

@@ -77,5 +77,13 @@ public class Reg_movie_Service_impl implements Reg_movie_Service {
 		Reg_movie_Dao dao = sqlSession.getMapper(Reg_movie_Dao.class);
 		dao.screen(param);
 	}
+
+	@Override
+	public ArrayList<MovieDto> serch_mov(Model model) {
+		Reg_movie_Dao dao = sqlSession.getMapper(Reg_movie_Dao.class);
+		ArrayList<MovieDto> serch_mov = dao.serch_mov(model);
+		
+		return serch_mov;
+	}
 	
 }

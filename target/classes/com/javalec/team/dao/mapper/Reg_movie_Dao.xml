@@ -54,4 +54,10 @@
         values (screen_seq.nextval, #{m_code}, #{h_num}, #{m_date}, #{m_period})
     </insert>  
     
+    <select id="serch_mov" resultType="com.javalec.team.dto.MovieDto">
+        select m_code, m_date, m_title, m_intro, m_time, m_period, m_grade, m_genre, m_director, m_rate, m_position, m_pics 
+        from movie 
+        where m_title like '%'||#{serch_mov}||'%'
+    </select>
+    
 </mapper>

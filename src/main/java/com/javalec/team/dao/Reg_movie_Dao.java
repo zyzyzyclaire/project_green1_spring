@@ -18,4 +18,6 @@ public interface Reg_movie_Dao {
 	
 	public MovieDto getMax_m_code();
 	public void screen(HashMap<String, String> param);
+	
+	public ArrayList<MovieDto> serch_mov(Model model);
 }
