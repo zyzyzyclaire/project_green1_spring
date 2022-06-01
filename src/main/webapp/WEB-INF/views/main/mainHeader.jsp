@@ -29,7 +29,8 @@
     	margin:auto; */
 
         /* float: left; */
-        margin: 20px 140px;
+        margin: 5px 250px 0px 250px;
+        display: flex; 
         
     }
 
@@ -50,11 +51,16 @@
         
 	}
 	.header_title {
-        margin-top: 15px;
+		margin-bottom: 30px;
+	}
+	.header_title_span {
+        margin: 10px;
+        margin-bottom: 50px;
     }
 
     .header_login {
-        margin-bottom: 30px;
+        margin-top: 15px;
+        margin-left: auto;
     }
 	
     /* 전체영역에서 여백을 없애줌 */
@@ -76,16 +82,12 @@
         #menu {
             width:700px;
             height:50px;
-            /* background: #ccc; */
-            /* color:black; */
             line-height: 50px; 
-            margin:0 auto;
+            margin: 0px 250px;
+/*             margin:0 auto; */
             text-align: center;
 
             display: flex;
-
-            position: sticky;
-            top: 0;
         }
     
         /* menu태그 자식의 ul의 자식 li를 왼쪽정렬과 넓이 140설정 */
@@ -137,9 +139,13 @@
             clear: both;
         }
 
-        .menu_ul, .menu_form, .header_title, .header_login{
+/*         .menu_ul, .menu_form, .header_title, .header_login{
             display: flex; 
             float: left;
+        } */
+        
+        .menu_form {
+        	margin-left: auto;
         }
 	
 </style>
@@ -159,7 +165,10 @@
             </div> 
         </div>
 	    <div class="contents">
-	        <h1 class="header_title"><a href="#"></a><span>TEAM3_CINEMA</span></h1>
+	        <h1 class="header_title"><a href="#"></a>
+	        	<img src="https://img.icons8.com/cotton/64/undefined/popcorn.png"/>
+	        	<span class="header_title_span">TEAM3_CINEMA</span>
+	        </h1>
 	        <ul class="header_login">
 	            <li class="header_con"><a href="#"><img src="https://img.cgv.co.kr/R2014/images/common/ico/loginPassword.png" alt="로그인" class="cgv_img"/><span>로그인</span></a></li>
 	            <li class="header_con"><a href="#"><img src="https://img.cgv.co.kr/R2014/images/common/ico/loginJoin.png" alt="회원가입" class="cgv_img"/><span>회원가입</span></a></li>
@@ -208,10 +217,10 @@
             <div class="menu_form">
                 <form>
                     <input type="text" name="" size="5">
-                    <button class="btn" type="submit">
+                    <button class="header_btn" type="submit">
                         <i class="fa-regular fa-magnifying-glass"></i>
                     </button>
-                    <!-- <input type="submit" value="검색" class="btn"> -->
+                    <!-- <input type="submit" value="검색" class="header_btn"> -->
                 </form>
             </div>
         </div>
