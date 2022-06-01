@@ -14,9 +14,9 @@ public class MainController {
 		return "main/index";	
 	}
 	
-	@RequestMapping("/test")
-	public String test() {
+	@RequestMapping("/mainHeader")
+	public String mainHeader() {
 		
-		return "main/test";	
+		return "main/mainHeader";	
 	}
 }

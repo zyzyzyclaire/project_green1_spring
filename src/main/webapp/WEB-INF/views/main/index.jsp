@@ -9,14 +9,16 @@
 	.main
 	{
 		height: 500px;
+		text-align: center;
+		margin-top: 100px;
 	}
 </style>
 </head>
 <body>
-<jsp:include page="mainHeader.jsp"></jsp:include> 
+<jsp:include page="mainHeader.jsp" flush="false"></jsp:include> 
 	<div class="main">
-		main
+		메 인 화 면 입 니 다 . 
 	</div>
-<jsp:include page="mainFooter.jsp"></jsp:include> 
 </body>
+<%-- <jsp:include page="mainFooter.jsp" flush="false"></jsp:include> --%>
 </html>
