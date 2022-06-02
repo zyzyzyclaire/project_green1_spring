@@ -59,6 +59,7 @@ public class GoodsController {
 			ArrayList<CartDto> cartlist = new ArrayList<CartDto>();
 			cart_listc_code = request.getParameterValues("cart_listc_code");
 			ArrayList<CartDto> buylist = cartController.cartlistbuy(cart_listc_code);
+			
 			for (int i = 0; i < cart_listc_code.length; i++) {
 				int price = buylist.get(i).getG_price()*buylist.get(i).getC_amount();
 				buylist.get(i).setG_price(price);
@@ -71,6 +72,7 @@ public class GoodsController {
 				cartController.deleteCart(param, null);
 				goodsService.insertBuy(param);
 			}
+			
 			model.addAttribute("cartlist",buylist);
 			return "mainview";
 		}

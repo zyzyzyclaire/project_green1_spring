@@ -14,6 +14,11 @@ public interface Reg_movie_Dao {
 	public void del_movie(HashMap<String, String> param);
 	public MovieDto show(HashMap<String, String> param);
 	
+	public MovieDto getm_code();
+	public void reg_movieimg(HashMap<String, String> param);
+	public ArrayList<MovieDto> listPicsImg(HashMap<String, String> param);
+	public MovieDto getMove(HashMap<String, String> param);
+	
 	public ArrayList<MovieDto> list_sort(Model model);
 	
 	public MovieDto getMax_m_code();

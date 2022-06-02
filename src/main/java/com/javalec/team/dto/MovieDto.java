@@ -5,6 +5,7 @@ import java.sql.Timestamp;
 public class MovieDto {
 	private String m_code;	//영화코드(pk)
 	private Timestamp m_date;	//개봉일자
+	private String m_date2;	//개봉일자
 	private String m_title;	//영화제목
 	private String m_intro;	//영화소개
 	private int m_time;	//상영시간
@@ -34,6 +35,14 @@ public class MovieDto {
 		this.m_rate = m_rate;
 		this.m_position = m_position;
 		this.m_pics = m_pics;
+	}
+
+	public String getM_date2() {
+		return m_date2;
+	}
+
+	public void setM_date2(String m_date2) {
+		this.m_date2 = m_date2;
 	}
 
 	public String getM_code() {

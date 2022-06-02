@@ -85,5 +85,32 @@ public class Reg_movie_Service_impl implements Reg_movie_Service {
 		
 		return serch_mov;
 	}
+
+	@Override
+	public MovieDto getm_code() {
+		Reg_movie_Dao dao = sqlSession.getMapper(Reg_movie_Dao.class);
+		MovieDto mcode = dao.getm_code();
+		return mcode;
+	}
+
+	@Override
+	public void reg_movieimg(HashMap<String, String> param) {
+		Reg_movie_Dao dao = sqlSession.getMapper(Reg_movie_Dao.class);
+		dao.reg_movieimg(param);
+	}
+
+	@Override
+	public ArrayList<MovieDto> listPicsImg(HashMap<String, String> param) {
+		Reg_movie_Dao dao = sqlSession.getMapper(Reg_movie_Dao.class);
+		ArrayList<MovieDto> listPicsImg = dao.listPicsImg(param);
+		return listPicsImg;
+	}
+
+	@Override
+	public MovieDto getMove(HashMap<String, String> param) {
+		Reg_movie_Dao dao = sqlSession.getMapper(Reg_movie_Dao.class);
+		MovieDto dto = dao.getMove(param);
+		return dto;
+	}
 	
 }

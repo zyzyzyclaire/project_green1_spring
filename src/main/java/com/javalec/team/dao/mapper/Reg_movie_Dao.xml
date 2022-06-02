@@ -6,8 +6,8 @@
 <mapper namespace="com.javalec.team.dao.Reg_movie_Dao">
     
     <insert id="reg_movie" parameterType="hashmap">
-    	insert into movie(m_code, m_date, m_title, m_intro, m_time, m_period, m_grade, m_genre, m_director, m_rate, m_position, m_pics) 
-        values (movie_seq.nextval, #{m_date}, #{m_title}, #{m_intro}, #{m_time}, #{m_period}, #{m_grade}, #{m_genre}, #{m_director}, #{m_rate}, #{m_position}, #{m_pics})
+        insert into movie(m_code, m_date, m_title, m_intro, m_time, m_period, m_grade, m_genre, m_director, m_rate, m_position, m_pics,m_originimg) 
+        values (movie_seq.nextval, #{m_date}, #{m_title}, #{m_intro}, #{m_time}, #{m_period}, #{m_grade}, #{m_genre}, #{m_director}, #{m_rate}, #{m_position}, #{m_pics}, #{m_originimg})
     </insert>
     
     <select id="list" resultType="com.javalec.team.dto.MovieDto">
@@ -16,12 +16,19 @@
         order by m_date desc
     </select>
     
+      <select id="getMove" resultType="com.javalec.team.dto.MovieDto">
+        select m_code, m_date, m_title, m_intro, m_time, m_period, m_grade, m_genre, m_director, m_rate, m_position, m_pics 
+        from movie 
+        where m_code = #{m_code}
+    </select>
+    
+    
     <insert id="edit_movie" parameterType="hashmap">
-    	update movie 
-    	set m_date=#{m_date}, m_title=#{m_title}, m_intro=#{m_intro}, m_time=#{m_time}
-    	  , m_period=#{m_period}, m_grade=#{m_grade}, m_genre=#{m_genre} 
-    	  , m_director=#{m_director}, m_rate=#{m_rate}, m_position=#{m_position}, m_pics=#{m_pics}   
-    	 where m_code=#{m_code}
+        update movie 
+        set m_date=#{m_date}, m_title=#{m_title}, m_intro=#{m_intro}, m_time=#{m_time}
+          , m_period=#{m_period}, m_grade=#{m_grade}, m_genre=#{m_genre} 
+          , m_director=#{m_director}, m_rate=#{m_rate}, m_position=#{m_position}, m_pics=#{m_pics}   
+         where m_code=#{m_code}
     </insert>
     
     <select id="show" resultType="com.javalec.team.dto.MovieDto">
@@ -31,16 +38,28 @@
     </select>
     
     <insert id="del_movie" parameterType="hashmap">
-    	delete movie where m_code=#{m_code}
+        delete movie where m_code=#{m_code}
     </insert>
-
-
-
-	<select id="list_sort" resultType="com.javalec.team.dto.MovieDto">
+    <select id="list_sort" resultType="com.javalec.team.dto.MovieDto">
         select m_code, m_date, m_title, m_intro, m_time, m_period, m_grade, m_genre, m_director, m_rate, m_position, m_pics 
         from movie 
         order by ${sort}
     </select>
+    
+    <select id="getm_code" resultType="com.javalec.team.dto.MovieDto">
+        select max(m_code) as m_code 
+        from movie 
+    </select>
+     <insert id="reg_movieimg" parameterType="hashmap">
+        insert into movieimg(m_imgcode,m_code,m_originimg,m_pics) 
+        values (MOVIEIMG_SEQ.nextval, #{m_code},#{m_originimg},#{m_pics})
+    </insert>
+    <select id="listPicsImg" resultType="com.javalec.team.dto.MovieDto">
+        select m_code, m_originimg, m_pics
+        from movieimg 
+        order by m_imgcode
+    </select>
+
 
 
 

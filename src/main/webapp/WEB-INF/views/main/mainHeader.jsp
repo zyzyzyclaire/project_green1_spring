@@ -6,6 +6,12 @@
 <head>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
+<!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+
+
 <script src="https://kit.fontawesome.com/259d5f1852.js" crossorigin="anonymous"></script>
 <style type="text/css">
 	.header_div
@@ -19,7 +25,6 @@
         /* min-width : 1120px;	
     	max-width : 1280px;	
     	margin:auto; */
-
 	}
 
     .contents
@@ -115,6 +120,9 @@
     #menu > ul > li:hover > ul {
         display:block;
         transition: all ease 10s;
+        
+        position: absolute;
+		z-index: 10;
         
     }
     /* #menu > ul > li > ul > li {

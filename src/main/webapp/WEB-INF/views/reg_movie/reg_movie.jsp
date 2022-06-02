@@ -8,7 +8,7 @@
 </head>
 <body>
 	<table>
-		<form method="post" action="reg_movie_insert">
+		<form method="post" action="reg_movie_insert" enctype="multipart/form-data">
 <%--
 			<tr>
 				<td>영화 코드 : <input type="text" name="m_code"></td>
@@ -47,11 +47,13 @@
 				<td>평점 : <input type="text" name="m_rate"></td>
 			</tr>
 			<tr>
-				<td>영화 포스터 : <input type="text" name="m_position"></td>
+				<td>영화 포스터 : <input type="file" name="m_position" multiple="multiple" ></td>
 			</tr>
 			<tr>
-				<td>영화 스틸컷 : <input type="text" name="m_pics" multiple></td>
+				<td>영화 스틸컷 : <input type="file" name="m_pics" multiple="multiple" ></td>
 			</tr>
+			
+			
 			<tr>
 				<td>
 					<input type="submit" value="저장">
