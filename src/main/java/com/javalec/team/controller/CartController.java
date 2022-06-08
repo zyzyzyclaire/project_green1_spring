@@ -36,7 +36,7 @@ public class CartController {
 	
 
 
-	@RequestMapping("/cartProcess")
+	@RequestMapping("cartProcess")
 	public String cartProcess(@RequestParam HashMap<String, String> param,Model model) {
 //		System.out.println(param.get("g_code"));
 //		System.out.println(param.get("g_name"));
@@ -51,7 +51,7 @@ public class CartController {
 //				System.out.println("안에있음?");
 				updateCart(param, model);
 //				return "redirect:goodsDisplay?g_code="+g_code;
-				return "mainview";	
+				return "redirect:index";	
 			}
 		}
 		
@@ -62,12 +62,12 @@ public class CartController {
 		param.put("g_price", Integer.toString(price));
 //		System.out.println(param.get("c_amount"));
 		cartservice.insertCart(param);
-		return "mainview";	
+		return "redirect:index";	
 	}
 	
 	
 	
-	@RequestMapping("/cartlist")
+	@RequestMapping("cartlist")
 	public String cartlist(@RequestParam HashMap<String, String> param,Model model) {	
 		
 		cartlist =cartservice.getAllCart(param);
@@ -77,7 +77,7 @@ public class CartController {
 				return "cart/cartlist";	
 			}else {
 				model.addAttribute("cart","0");
-				return "mainview";
+				return "redirect:index";
 			}
 		}else {
 			return null;

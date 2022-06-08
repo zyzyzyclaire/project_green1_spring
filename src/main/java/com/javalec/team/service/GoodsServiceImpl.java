@@ -1,5 +1,6 @@
 package com.javalec.team.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.apache.ibatis.session.SqlSession;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.javalec.team.dao.CartDao;
 import com.javalec.team.dao.GoodsDao;
 import com.javalec.team.dto.GoodsDto;
+import com.javalec.team.dto.MovieDto;
 
 
 
@@ -32,6 +34,33 @@ public class GoodsServiceImpl implements GoodsService{
 		GoodsDao dao = sqlSession.getMapper(GoodsDao.class);
 		dao.insertBuy(param);
 		
+	}
+
+	@Override
+	public void insertGoods(HashMap<String, String> param) {
+		GoodsDao dao = sqlSession.getMapper(GoodsDao.class);
+		dao.insertGoods(param);
+	}
+
+	@Override
+	public void insertGoodsImg(HashMap<String, String> param) {
+		GoodsDao dao = sqlSession.getMapper(GoodsDao.class);
+		dao.insertGoodsImg(param);
+		
+	}
+
+	@Override
+	public GoodsDto getGoodsGcode() {
+		GoodsDao dao = sqlSession.getMapper(GoodsDao.class);
+		GoodsDto dto = dao.getGoodsGcode();
+		return dto;
+	}
+
+	@Override
+	public ArrayList<GoodsDto> list_sort(HashMap<String, String> param) {
+		GoodsDao dao = sqlSession.getMapper(GoodsDao.class);
+		ArrayList<GoodsDto> dto = dao.list_sort(param);
+		return dto;
 	}
 	
 

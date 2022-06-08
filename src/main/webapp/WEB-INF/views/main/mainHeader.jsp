@@ -1,17 +1,20 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%
+	request.setCharacterEncoding("UTF-8");
+%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
+
 <!-- CSS only -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 
-
+<!-- icon -->
 <script src="https://kit.fontawesome.com/259d5f1852.js" crossorigin="anonymous"></script>
 <style type="text/css">
 	.header_div
@@ -19,7 +22,7 @@
 		font-size: 13px;
 	    line-height: 1.2;
 	    color: #666;
-	    font-family: 'Noto Sans KR', 'CJONLYONENEW', '¸¼Àº °íµñ', 'µ¸¿ò', Dotum, sans-serif;
+	    font-family: 'Noto Sans KR', 'CJONLYONENEW', 'ë§‘ì€ ê³ ë”•', 'ë‹ì›€', Dotum, sans-serif;
 	    font-weight: 400;
 
         /* min-width : 1120px;	
@@ -56,7 +59,7 @@
         
 	}
 	.header_title {
-		margin-bottom: 30px;
+		margin-top: 20px;
 	}
 	.header_title_span {
         margin: 10px;
@@ -67,96 +70,164 @@
         margin-top: 15px;
         margin-left: auto;
     }
-	
-    /* ÀüÃ¼¿µ¿ª¿¡¼­ ¿©¹éÀ» ¾ø¾ÖÁÜ */
-        * {
-            margin: 0;
-            padding: 0;
-        }
-    /* ul liÅÂ±×¿¡ ¸®½ºÆ® ½ºÅ¸ÀÏÀ» ¾ø¾Ú */
-        ul li{
+
+       .header_con {
             list-style: none;
         }
-    /* aÅÂ±×¿¡ ÅØ½ºÆ® ¹ØÁÙÀ» ¾ø¾Ö°í »ö»óÀ» #333 */
-        a {
+    /* aíƒœê·¸ì— í…ìŠ¤íŠ¸ ë°‘ì¤„ì„ ì—†ì• ê³  ìƒ‰ìƒì„ #333 */
+        .header_a {
             text-decoration: none;
             color:#333;
         }
-    /* ±ÛÀÚÅ©±â¸¦ 16px ¸¼Àº °íµñ ±½°ÔÇÏ°í width³ĞÀÌ 700, ³ôÀÌ 50¸¸Å­, ¶óÀÎ³ôÀÌ50px
-    menu¹Ú½º °¡¿îµ¥Á¤·Ä, ±ÛÀÚ°¡¿îµ¥ Á¤·Ä */
-        #menu {
-            width:700px;
-            height:50px;
-            line-height: 50px; 
-            margin: 0px 250px;
-/*             margin:0 auto; */
-            text-align: center;
+        
+        .navbar {
+   	        margin: 5px 250px 0px 250px;
+        }
+        
+        .nav-link {
+        	margin-right: 30px;
+        }
+        
+        .dropdown:hover .dropdown-menu {
+		    display: block;
+		    margin-top: 0;
+		}
+		
+		.dropdown_span {
+			color: black;
+			font-size: 15px;
+			font-weight: bold;
+		}
+		
+		.dropdown-item {
+			font-size: 13px;
+			margin: 10px 0px;
+		}
+		
+		#reservation {
+			color: red;
+		}
 
-            display: flex;
+/*  	.fixed {
+        position: fixed;
+        top: 0px;
+        z-index: 1;
+        background-color: rgba(232, 0, 8, 1);
+        color: white;
+        width: max;
+        height: 80px;
+        
+      } */
+      
+      .layer_popup{
+			position: fixed;
+            text-align:center;
+            right: 300px;
+            bottom: 100px;
+            z-index: 2;
+            
+            display: none;
         }
-    
-        /* menuÅÂ±× ÀÚ½ÄÀÇ ulÀÇ ÀÚ½Ä li¸¦ ¿ŞÂÊÁ¤·Ä°ú ³ĞÀÌ 140¼³Á¤ */
-        #menu > ul > li {
-            float:left;
-            width:140px;
-            position:relative;
-
-        }
-        
-        /* menuÅÂ±× ÀÚ½ÄÀÇ ulÀÇ ÀÚ½Ä li¸¦ ¿ŞÂÊÁ¤·Ä°ú ³ĞÀÌ 140¼³Á¤ */
-        #menu > ul > li > a {
-            font-weight: bold;
-        }
-        
-        /* ulÀ» ¾Èº¸ÀÌµµ·Ï ¼³Á¤(ÇÏÀ§¸Ş´º °¨ÃçÁö°í ¸ŞÀÎ¸Ş´º¸¸ ³ª¿È) */
-        #menu > ul > li > ul {
-		width:130px;
-		display:none;
-		position: absolute;
-        line-height: 3em;
-    }
-    
-    /* ¸ŞÀÎ¸Ş´º¿¡ ¸¶¿ì½º¸¦ ¿Ã¸± ½Ã ÇÏÀ§¸Ş´º°¡ º¸ÀÌµµ·Ï ¼³Á¤ */
-    #menu > ul > li:hover > ul {
-        display:block;
-        transition: all ease 10s;
-        
-        position: absolute;
-		z-index: 10;
-        
-    }
-    /* #menu > ul > li > ul > li {
-        margin: 10px;
-        
-    } */
-    /* ÇÏÀ§¸Ş´º¿¡ ¸¶¿ì½º¸¦ ¿Ã¸± ½Ã css */
-    #menu > ul > li > ul > li:hover {
-        text-decoration: underline;
-        font-weight: 400;
-        line-height: 3em;
-        
-		/* transition: ease 1s;
-        background-color: rgba( 224, 224, 224, 0.5 );
-        margin: 10px;
-        border-radius: 10px; */
-		}	
-
-        #first_line {clear: both;}
-        #redline{
-            background-color: red; 
-            clear: both;
-        }
-
-/*         .menu_ul, .menu_form, .header_title, .header_login{
-            display: flex; 
-            float: left;
-        } */
-        
-        .menu_form {
-        	margin-left: auto;
-        }
+      
+      #res_btn {
+      	border-radius: 30px;
+      	width: 130px;
+      	font-size: 15px;
+      	background-image: linear-gradient(to left, rgb(255, 115, 86), rgb(251, 67, 87));
+      }
+      #goTop_btn {
+      	border: 1px;
+      	border-radius: 100px;
+      	width: 40px;
+      	height: 40px;
+      }
+      .goTop_img {
+      	width: 20px;
+      	height: 20px;
+      }
+      .main_index, .main_index:hover{
+      	text-decoration: none;
+      	color:#333;
+      }
+      
+      #cart_img {
+      	width: 30px;
+      	height: 30px;
+      	margin-bottom: 3px;
+      }
 	
+	.adreduce {
+		text-align: center;
+		background-color: black;
+	}
+	
+	/*ë ˆì´ì–´ íŒì—… ì˜ì—­*/
+	#popup {
+	 opacity: 0;
+	 display: none;
+	 position: relative;
+	 width: auto;
+	 border: black;
+	 padding: 20px;
+	 background-color: black;
+	}  
 </style>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+<!-- Bpopup -->
+<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bPopup/0.11.0/jquery.bpopup.js"></script>
+
+    <script>
+		function goTop(){
+			$('html').scrollTop(0);
+		}
+	
+/*       $( document ).ready( function() {
+        var jbOffset = $( '.container-fluid' ).offset();
+        $( window ).scroll( function() {
+          if ( $( document ).scrollTop() > jbOffset.top ) {
+            $( '.container-fluid' ).addClass( 'fixed' );
+          }
+          else {
+            $( '.container-fluid' ).removeClass( 'fixed' );
+          }
+        });
+      } ); */
+
+      
+      function searchCheck() {
+/*      	alert(document.getElementById("search_con").value); */
+
+     	if (!document.getElementById('search_con').value) {
+     		alert("ì œëª©ì„ ì…ë ¥í•´ì£¼ì„¸ìš”.");
+		} else {
+			document.search_frm.submit();
+		}
+      }
+      
+	$(function(){
+		$(".hi").click(function(){ //ë ˆì´ì–´ íŒì—… ì—´ê¸° ë²„íŠ¼ í´ë¦­ ì‹œ
+			$('#popup').bPopup(); //  
+		});
+				
+	});
+	
+      $(document).ready(function () {
+    	  
+    	   //  íŠ¹ì • ìœ„ì¹˜ì—ì„œ ë¶€í„° ë²„íŠ¼ ë‚˜íƒ€ê³ , ì‚¬ë¼ì§€ê²Œ..íš¨ê³¼ëŠ” fadeë¡œ
+    	    $(window).scroll(function () {
+    			if ($(this).scrollTop() > 230) {
+    				$('.layer_popup').fadeIn(200);
+    			} else {
+    				$('.layer_popup').fadeOut(200);
+    			}
+    		});
+
+    	});
+      
+    </script>
 </head>
 <body>
 	<div class="header_div">
@@ -165,76 +236,101 @@
                 <div id="TopBarWrapper" class="sect-head-ad">
                     <div class="top_extend_ad_wrap">
                         <div class="adreduce" id="adReduce">                    
-                            <iframe src="//ad.cgv.co.kr/NetInsight/html/CGV/CGV_201401/main@TopBar_EX" width="100%" height="80" title="" frameborder="0" scrolling="no" topmargin="0" leftmargin="0" marginwidth="0" marginheight="0" name="TopBanner" id="TopBanner"></iframe>
-                        </div> 
+                           <!--  <iframe src="//ad.cgv.co.kr/NetInsight/html/CGV/CGV_201401/main@TopBar_EX" width="100%" height="80" title="" frameborder="0" scrolling="no" topmargin="0" leftmargin="0" marginwidth="0" marginheight="0" name="TopBanner" id="TopBanner"></iframe> -->
+                        	<img src="https://adimg.cgv.co.kr/images/202205/Witch2/0602_980x80.jpg" class="hi">
+                        </div>
+                        <div id="popup">
+						   <p>
+						     <iframe src='https://tv.naver.com/embed/26947241?autoPlay=true' frameborder='no' scrolling='no' marginwidth='0' marginheight='0' WIDTH='544' HEIGHT='306' allow='autoplay' allowfullscreen></iframe>
+						   </p>
+						</div>
                         <div class="adextend" id="adExtend"></div>
-                    </div><!-- //.top_extend_ad_wrap -->
+                    </div>
                 </div>    
             </div> 
         </div>
 	    <div class="contents">
-	        <h1 class="header_title"><a href="#"></a>
-	        	<img src="https://img.icons8.com/cotton/64/undefined/popcorn.png"/>
-	        	<span class="header_title_span">TEAM3_CINEMA</span>
+	        <h1 class="header_title">
+	        	<a href="index" class="main_index">
+		        	<img src="https://img.icons8.com/cotton/64/undefined/popcorn.png"/>
+		        	<span class="header_title_span">TEAM3_CINEMA</span>
+	        	</a>
 	        </h1>
 	        <ul class="header_login">
-	            <li class="header_con"><a href="#"><img src="https://img.cgv.co.kr/R2014/images/common/ico/loginPassword.png" alt="·Î±×ÀÎ" class="cgv_img"/><span>·Î±×ÀÎ</span></a></li>
-	            <li class="header_con"><a href="#"><img src="https://img.cgv.co.kr/R2014/images/common/ico/loginJoin.png" alt="È¸¿ø°¡ÀÔ" class="cgv_img"/><span>È¸¿ø°¡ÀÔ</span></a></li>
-	            <li class="header_con"><a href="#"><img src="https://img.cgv.co.kr/R2014/images/common/ico/loginMember.png" alt="¸¶ÀÌÆäÀÌÁö" class="cgv_img"/><span>¸¶ÀÌÆäÀÌÁö</span></a></li>
-	            <li class="header_con"><a href="#"><img src="https://img.cgv.co.kr/R2014/images/common/ico/loginCustomer.png" alt="°í°´¼¾ÅÍ" class="cgv_img"/><span>°í°´¼¾ÅÍ</span></a></li>
+	            <li class="header_con"><a href="#" class="header_a"><img src="https://img.cgv.co.kr/R2014/images/common/ico/loginPassword.png" alt="ë¡œê·¸ì¸" class="cgv_img"/><span>ë¡œê·¸ì¸</span></a></li>
+	            <li class="header_con"><a href="#" class="header_a"><img src="https://img.cgv.co.kr/R2014/images/common/ico/loginJoin.png" alt="íšŒì›ê°€ì…" class="cgv_img"/><span>íšŒì›ê°€ì…</span></a></li>
+	            <li class="header_con"><a href="#" class="header_a"><img src="https://img.cgv.co.kr/R2014/images/common/ico/loginMember.png" alt="ë§ˆì´í˜ì´ì§€" class="cgv_img"/><span>ë§ˆì´í˜ì´ì§€</span></a></li>
+	            <li class="header_con"><a href="#" class="header_a"><img src="https://cdn-icons.flaticon.com/png/512/2997/premium/2997834.png?token=exp=1654572631~hmac=808157ccee560e484daf3e6b70424210" alt="ì¥ë°”êµ¬ë‹ˆ" class="cgv_img" id="cart_img"/><span>ì¥ë°”êµ¬ë‹ˆ</span></a></li>
+	            <li class="header_con"><a href="#" class="header_a"><img src="https://img.cgv.co.kr/R2014/images/common/ico/loginCustomer.png" alt="ê³ ê°ì„¼í„°" class="cgv_img"/><span>ê³ ê°ì„¼í„°</span></a></li>
 	        </ul>
 	    </div>
         
         <hr id="first_line">
         
-        <div id="menu">
-            <ul class="menu_ul">
-                <li><a href="#">¿µÈ­</a>
-                    <ul>
-                        <li><a href="#">¿µÈ­</a></li>
-                        <li><a href="#">¹«ºñÂ÷Æ®</a></li>
-                    </ul>
-                </li>
-                <li><a href="#">¿¹¸Å</a>
-                    <ul>
-                        <li><a href="#">¿¹¸Å</a></li>
-                    </ul>
-                </li>
-                <li><a href="#">½ºÅä¾î</a>
-                    <ul>
-                        <li><a href="#">¿µÈ­°ü¶÷±Ç</a></li>
-                        <li><a href="#">±âÇÁÆ®Ä«µå</a></li>
-                        <li><a href="#">ÄŞº¸</a></li>
-                        <li><a href="#">ÆËÄÜ</a></li>
-                        <li><a href="#">À½·á</a></li>
-                        <li><a href="#">½º³¼</a></li>
-                    </ul>
-                </li>
-                <li><a href="#">°øÁö»çÇ×</a>
-                    <ul>
-                        <li><a href="#">°øÁö»çÇ×</a></li>
-                        <li><a href="#">QnA</a></li>
-                        <li><a href="#">FaQ</a></li>
-                        <li><a href="#">¿µÈ­/¿¹¸Å</a></li>
-                        <li><a href="#">¸â¹ö½Ê</a></li>
-                        <li><a href="#">Á¦ÈŞÇÒÀÎ</a></li>
-                    </ul>
-                </li>
-            </ul>
-            
-            <div class="menu_form">
-                <form>
-                    <input type="text" name="" size="5">
-                    <button class="header_btn" type="submit">
-                        <i class="fa-regular fa-magnifying-glass"></i>
-                    </button>
-                    <!-- <input type="submit" value="°Ë»ö" class="header_btn"> -->
-                </form>
-            </div>
-        </div>
-	    
-	<hr id="redline">
-	</div>
+        <nav class="navbar navbar-expand-lg">
+		  <div class="container-fluid">
+		    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+		      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+		        <li class="nav-item dropdown">
+		          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+		            <span class="dropdown_span">ì˜í™”</span>
+		          </a>
+		          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+		            <li><a class="dropdown-item" href="#">ì˜í™”</a></li>
+		            <li><a class="dropdown-item" href="#">ë¬´ë¹„ì°¨íŠ¸</a></li>
+		          </ul>
+		        </li>
+		        <li class="nav-item dropdown">
+		          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+		            <span class="dropdown_span" id="reservation">ì˜ˆë§¤</span>
+		          </a>
+		          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+		            <li><a class="dropdown-item" href="#">ì˜ˆë§¤</a></li>
+		          </ul>
+		        </li>
+		        <li class="nav-item dropdown">
+		          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+		            <span class="dropdown_span">ìŠ¤í† ì–´</span>
+		          </a>
+		          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+		            <li><a class="dropdown-item" href="#">ì˜í™”ê´€ëŒê¶Œ</a></li>
+		            <li><a class="dropdown-item" href="#">ê¸°í”„íŠ¸ì¹´ë“œ</a></li>
+		            <li><a class="dropdown-item" href="#">ì½¤ë³´</a></li>
+		            <li><a class="dropdown-item" href="#">íŒì½˜</a></li>
+		            <li><a class="dropdown-item" href="#">ìŒë£Œ</a></li>
+		            <li><a class="dropdown-item" href="#">ìŠ¤ë‚µ</a></li>
+		          </ul>
+		        </li>
+		        <li class="nav-item dropdown">
+		          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+		            <span class="dropdown_span">ê³µì§€ì‚¬í•­</span>
+		          </a>
+		          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+		            <li><a class="dropdown-item" href="#">ê³µì§€ì‚¬í•­</a></li>
+		            <li><a class="dropdown-item" href="#">QnA</a></li>
+		            <li><a class="dropdown-item" href="#">FaQ</a></li>
+		            <li><a class="dropdown-item" href="#">ì˜í™”/ì˜ˆë§¤</a></li>
+		            <li><a class="dropdown-item" href="#">ë©¤ë²„ì‹­</a></li>
+		            <li><a class="dropdown-item" href="#">ì œíœ´í• ì¸</a></li>
+		          </ul>
+		        </li>
+		      </ul>
+		      <form class="d-flex" role="search" method="post" action="serch_mov_main" name="search_frm">
+		        <input class="form-control me-2 sm" type="search" placeholder="ì œëª©ìœ¼ë¡œ ê²€ìƒ‰" aria-label="Search" name="kind" id="search_con">
+		        <button class="btn btn-outline-secondary btn-sm" type="button" onclick="searchCheck()">Search</button>
+		      </form>
+		    </div>
+		  </div>
+		</nav>
 		
+		<div class="layer_popup">
+			<button type="button" class="btn btn-danger btn-lg" id="res_btn">ì˜ˆë§¤í•˜ê¸°</button>
+			<button type="button" id="goTop_btn" onclick="goTop()">
+				<img src="https://img.cgv.co.kr/R2014/images/common/btn/gotoTop.png" alt="ìµœìƒë‹¨ìœ¼ë¡œ ì´ë™" class="goTop_img"/>
+			</button>
+		</div>
+		
+	</div>
+	<hr>
 </body>
 </html>

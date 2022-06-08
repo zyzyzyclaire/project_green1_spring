@@ -6,6 +6,7 @@ public class MovieDto {
 	private String m_code;	//영화코드(pk)
 	private Timestamp m_date;	//개봉일자
 	private String m_date2;	//개봉일자
+	
 	private String m_title;	//영화제목
 	private String m_intro;	//영화소개
 	private int m_time;	//상영시간
@@ -17,6 +18,34 @@ public class MovieDto {
 	private int m_rate;	//평점
 	private String m_position;	//영화포스터
 	private String m_pics;	//영화스틸컷
+	private String m_actor; //출연배우
+	private String m_detail; //영화상세설명
+	
+	
+	public String getM_actor() {
+		return m_actor;
+	}
+
+	public void setM_actor(String m_actor) {
+		this.m_actor = m_actor;
+	}
+
+	public String getM_detail() {
+		return m_detail;
+	}
+
+	public void setM_detail(String m_detail) {
+		this.m_detail = m_detail;
+	}
+
+	public String getM_date2() {
+		return m_date2;
+	}
+
+	public void setM_date2(String m_date2) {
+		this.m_date2 = m_date2;
+	}
+	
 	
 	public MovieDto() {
 	}
@@ -35,14 +64,6 @@ public class MovieDto {
 		this.m_rate = m_rate;
 		this.m_position = m_position;
 		this.m_pics = m_pics;
-	}
-
-	public String getM_date2() {
-		return m_date2;
-	}
-
-	public void setM_date2(String m_date2) {
-		this.m_date2 = m_date2;
 	}
 
 	public String getM_code() {

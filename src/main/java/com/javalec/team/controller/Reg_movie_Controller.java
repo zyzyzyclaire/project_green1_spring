@@ -32,8 +32,8 @@ public class Reg_movie_Controller {
 	private Reg_movie_Service service;
 	
 	//0524 관리자 영화 넣기 - 근지
-//	@RequestMapping("/reg_movie")
-	@RequestMapping("/reg_movie/reg_movie")
+	@RequestMapping("/reg_movie")
+//	@RequestMapping("/reg_movie/reg_movie")
 	public String reg_movie(Model model) {
 		System.out.println("@@@### reg_movie()");
 		
@@ -41,7 +41,7 @@ public class Reg_movie_Controller {
 	}
 	
 	//0524 관리자 영화 db 넣기 - 근지
-	@RequestMapping("/reg_movie/reg_movie_insert")
+	@RequestMapping("/reg_movie_insert")
 	public String reg_movie_insert(MultipartHttpServletRequest mtfRequest ,@RequestParam HashMap<String, String> param, Model model , HttpServletRequest request) {
 		List<MultipartFile> m_positionfiles = mtfRequest.getFiles("m_position");
 		List<MultipartFile> m_picsfiles = mtfRequest.getFiles("m_pics");
@@ -71,10 +71,8 @@ public class Reg_movie_Controller {
 				service.reg_movie(param);
 				
 			} catch (IllegalStateException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -99,10 +97,8 @@ public class Reg_movie_Controller {
 				service.reg_movieimg(param);
 				
 			} catch (IllegalStateException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -120,7 +116,7 @@ public class Reg_movie_Controller {
 
 	//에이젝스 사용 후 필요없게 됨 - 다시 필요함
 	//0525 관리자 영화 리스트 보기 - 근지
-	@RequestMapping("/reg_movie/movie_list")
+	@RequestMapping("/movie_list")
 	public String movie_list(Model model) {
 		System.out.println("@@@### reg_movie()");
 		
@@ -132,9 +128,9 @@ public class Reg_movie_Controller {
 	
 	
 	//0525 관리자 영화 수정 - 근지
-	@RequestMapping("/reg_movie/edit")
+	@RequestMapping("/edit")
 	public String edit(@RequestParam HashMap<String, String> param, Model model) {
-		service.show(param);
+		System.out.println("edit() 도착?");
 		
 		MovieDto dto = service.show(param);
 		model.addAttribute("dto", dto);
@@ -143,17 +139,77 @@ public class Reg_movie_Controller {
 	}
 	
 	//0525 관리자 영화 db 수정 - 근지	
-//	@RequestMapping("/edit_movie")
-	@RequestMapping("/reg_movie/edit_movie")
-	public String edit_movie(@RequestParam HashMap<String, String> param, Model model) {
-		service.edit_movie(param);
+	@RequestMapping("/edit_movie")
+	public String edit_movie(MultipartHttpServletRequest mtfRequest ,@RequestParam HashMap<String, String> param, Model model, HttpServletRequest request) {
 		
+			List<MultipartFile> m_positionfiles = mtfRequest.getFiles("m_position");
+			List<MultipartFile> m_picsfiles = mtfRequest.getFiles("m_pics");
+			 //String path = "C:\\test\\"; 
+
+			
+			 ServletContext servletContext = request.getSession().getServletContext();
+			 String path = servletContext.getRealPath("/");
+			 path += "resources\\";
+			 System.out.println("path@@@@"+path);
+			for (MultipartFile mf : m_positionfiles) {
+				String originFileName = mf.getOriginalFilename(); // 원본 파일 명
+				long fileSize = mf.getSize(); // 파일 사이즈
+
+				System.out.println("originFileName : " + originFileName);
+				System.out.println("fileSize : " + fileSize);
+				
+				String filename = System.currentTimeMillis() + originFileName;
+				String safeFile = path +filename;
+				
+				param.put("m_originimg", originFileName);
+				param.put("m_position", filename);
+				param.put("m_pics", "");
+				
+				try {
+					mf.transferTo(new File(safeFile));
+					service.edit_movie(param);
+					
+				} catch (IllegalStateException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		    MovieDto movieDto = service.getm_code();
+			for (MultipartFile mf : m_picsfiles) {
+				String originFileName = mf.getOriginalFilename(); // 원본 파일 명
+				long fileSize = mf.getSize(); // 파일 사이즈
+				param.put("m_code", movieDto.getM_code());
+				System.out.println("originFileName : " + originFileName);
+				System.out.println("fileSize : " + fileSize);
+				
+				 
+				
+				String filename = System.currentTimeMillis() + originFileName;
+				String safeFile = path +filename;
+				
+				param.put("m_originimg", originFileName);
+				param.put("m_pics", filename);
+				
+				try {
+					mf.transferTo(new File(safeFile));
+					service.reg_movieimg(param);
+					
+				} catch (IllegalStateException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		
+//		service.edit_movie(param);
 		return "redirect:movie_list";	
 	}
 	
 	//0525 관리자 영화 삭제 - 근지
-//	@RequestMapping(value = "/del_movie")
-	@RequestMapping(value = "/reg_movie/del_movie")
+	@RequestMapping(value = "/del_movie")
 	public String del_movie(@RequestParam HashMap<String, String> param, Model model) {
 		service.del_movie(param);
 		
@@ -172,7 +228,7 @@ public class Reg_movie_Controller {
 	
 	//0526 정렬 에이젝스 체크 - 근지
 	/* @RequestMapping("ajax") */
-	@RequestMapping("/reg_movie/ajax")
+	@RequestMapping("/ajax")
 	@ResponseBody
 	public ArrayList<MovieDto> ajax(HttpServletRequest request, Model model) {
 	
@@ -182,16 +238,16 @@ public class Reg_movie_Controller {
 		
 		
 		if (request.getParameter("kind") == null) {	// 처음화면 시작시 null값이라서. 첫화면 컨트롤러 새로 만들어서 그럴 일 없겠지만
-			sort = "m_code desc";
+			sort = "m_date desc";
 			
 		} else {
 			
 			if (request.getParameter("kind").trim().equals("최신순")) {
 				
-				sort = "m_code desc";
+				sort = "m_date desc";
 			} else if (request.getParameter("kind").trim().equals("오래된순")) {
 				
-				sort = "m_code";
+				sort = "m_date";
 			} else if (request.getParameter("kind").trim().equals("인기순")) {	// 일단 평점순으로 임시설정
 				
 				sort = "m_rate desc";
@@ -220,7 +276,7 @@ public class Reg_movie_Controller {
 	}
 	
 	//0531 영화 검색 - 근지
-	@RequestMapping("/reg_movie/serch_mov")
+	@RequestMapping("/serch_mov")
 	@ResponseBody
 	public ArrayList<MovieDto> serch_mov(HttpServletRequest request, Model model) {
 		System.out.println("검색 내용=====>"+request.getParameter("kind").trim());

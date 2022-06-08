@@ -7,7 +7,6 @@
 <meta charset="EUC-KR">
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<script src="https://cdn.iamport.kr/js/iamport.payment-1.1.8.js" type="text/javascript"></script>
  <script>
  function deleteCart(c_code,u_id) { 
 	 //alert("들어오냐?"+c_code);
@@ -46,7 +45,6 @@
 		var c_code = 0;
 		var u_id = null;
 		var g_cdoe = 0;
-		
 	   function change(cou,code,id,gcode){ 
 		   count = cou
 		   c_code = code
@@ -76,7 +74,6 @@
 			   aj(c_amount,c_code,u_id,g_cdoe);
 		   }); 
 	  }); 
-	   
 	  function aj(ajc_amount,ajc_code,aju_id,ajg_cdoe){ 
 		   //alert(ajc_amount+"@@"+ajc_code+"@@"+aju_id+"@@"+ajg_cdoe)	
 			$.ajax({
@@ -98,54 +95,14 @@
 	  }
 	   
 	
- 	//0530 결제api. 실행된 후 form action으로 감 - 근지
- 	$(function(){
-	     $(".cart_buyBtn").on("click",function(){
-	    	 
-/* 	    	 var chk_val_arr = [];
-	    	 $("input:checkbox[name=cart_listc_code]").each(function() {
-	    		var chk = $(this).val();
-	    		chk_val_arr.push(chk);
-	    		console.log(chk_val_arr);
-	    	 }); */
-	    	 
-	    	 if(confirm('구매하시겠습니까?')){
-	    		
-	    		var IMP = window.IMP;
-	   		  	IMP.init('imp87572617');
-	   		  	//결제시 전달되는 정보
-	   			IMP.request_pay({
-	   					    pg : 'inicis', 
-	   					    pay_method : 'card',
-	   					    merchant_uid : 'merchant_' + new Date().getTime(),
-	   					    name : '주문명:team3'/*상품명*/,
-	   					    amount : 100/*상품 가격*/, 
-	   					    buyer_email : 'iamport@siot.do'/*구매자 이메일*/,
-	   					    buyer_name : '구매자이름',
-	   					    buyer_tel : '010-1234-5678'/*구매자 연락처*/,
-	   					    buyer_addr : '서울특별시 강남구 삼성동'/*구매자 주소*/,
-	   					    buyer_postcode : '123-456'/*구매자 우편번호*/
-	   					}, function(rsp) {
-	   						var result = '';
-	   					    if ( rsp.success ) {
-	   					    	alert('결제성공');
-	   					    	
-	   					    	// 결제성공시 컨트롤러로 보내져서 history table에 추가됨
-					    		document.buy_frm.submit();
-	   					    } else {
-	   					    	alert('결제실패');
-	   					    }
-	   					});
-	    		 
-	   	 	 }
-    	});
- 	});
 		
+		
+	  
 
  </script>
 </head>
 <body>
-	<form method="post" action="buy" name="buy_frm">
+	<form method="post" action="buy?u_id=wjdcksgml">
 		<table>
 			<tr>
 				<td>선택하기</td>
@@ -158,10 +115,11 @@
 				<tr onload="">
 					<td><input type="checkbox" name="cart_listc_code" value="${cartlist.c_code}"></td>
 					<td>${cartlist.g_code}</td>
-					<td>	
+										<td>	
 					<input type="hidden" id="stcount${status.count}" value="${status.count}">
 					<input type="hidden" id="stcount${cartlist.c_code}" value="${cartlist.c_code}">
 					<input type="hidden" id="stcount${cartlist.u_id}" value="${cartlist.u_id}">
+					
 						<select name="c_amount" id="c_amount1" class="c_amount${status.count}" onclick="change('${status.count}','${cartlist.c_code}','${cartlist.u_id}','${cartlist.g_code}')">
 							<option value="1" onclick="change()">1</option>
 							<option value="2" onclick="change()">2</option>
@@ -180,7 +138,7 @@
 				</tr>
 			</c:forEach> 
 		</table>
-		<input type="button" value="구매하기" class="cart_buyBtn">
+		<input type="submit" value="구매하기">
 	</form>
 </body>
 </html>

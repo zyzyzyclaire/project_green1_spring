@@ -1,7 +1,10 @@
 package com.javalec.team;
 
+import java.io.File;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import org.slf4j.Logger;
@@ -10,6 +13,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 /**
  * Handles requests for the application home page.
@@ -33,7 +38,14 @@ public class HomeController {
 		
 		model.addAttribute("serverTime", formattedDate );
 		
-		return "redirect:movie_list";
+		return "mainview";
 	}
+	
+
+//	@RequestMapping("board/content")
+//	public String con(Model model) { //쿼리결과도받을수있음
+//		/* model.addAttribute("img", "/resources/img/testimg.png"); */
+//		return "board/content";
+//	}
 	
 }
