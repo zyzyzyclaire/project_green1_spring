@@ -135,7 +135,7 @@
 				<table>
 					<tr>
 						<c:forEach items="${list }" var="dto" begin="0" end="5">
-							<td class="list_td">
+							<td class="list_td"  style = "cursor:pointer;" onClick = "location.href='movieDisplay?m_code=${dto.m_code}'">
 								<div><img src='${pageContext.request.contextPath}/resources/${dto.m_position}' class="main_img rounded"></div>
 								<div class="main_movie_title">${dto.m_title }</div> 
 								<div><i class="fa-solid fa-star"></i>&nbsp;${dto.m_rate }</div>
