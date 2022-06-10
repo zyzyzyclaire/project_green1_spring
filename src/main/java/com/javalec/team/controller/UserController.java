@@ -70,7 +70,7 @@ public class UserController {
 		PrintWriter out = response.getWriter();
 
 		if (dtos.isEmpty()) {
-			out.println("<script>alert('鈺곕똻�삺占쎈릭筌욑옙 占쎈륫占쎈뮉 占쎌돳占쎌뜚占쎌뿯占쎈빍占쎈뼄.'); self.close();</script>");
+			out.println("<script>alert('올바른 아이디와 비밀번호를 입력하세요.'); self.close();</script>");
 			out.flush();
 			return "user/login";
 		} else {
@@ -81,7 +81,7 @@ public class UserController {
 				System.out.println(dtos.get(0).getU_auth());
 				return "redirect:/";
 			} else {
-				out.println("<script>alert('占쎈툡占쎌뵠占쎈탵 占쎌굢占쎈뮉 �뜮袁⑨옙甕곕뜇�깈揶쏉옙 占쎈뼄�뵳�굝�빍占쎈뼄.'); self.close();</script>");
+				out.println("<script>alert('비밀번호가 틀렸습니다.'); self.close();</script>");
 				out.flush();
 				return "user/login";
 			}

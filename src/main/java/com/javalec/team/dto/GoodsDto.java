@@ -4,6 +4,7 @@ public class GoodsDto {
 	private int g_code;
 	private String g_name;
 	private int g_price;
+	private int g_section;
 	private String img_origin;
 	private String img_1;
 	
@@ -36,6 +37,12 @@ public class GoodsDto {
 	}
 	public void setG_price(int g_price) {
 		this.g_price = g_price;
+	}
+	public int getG_section() {
+		return g_section;
+	}
+	public void setG_section(int g_section) {
+		this.g_section = g_section;
 	}
 }
 

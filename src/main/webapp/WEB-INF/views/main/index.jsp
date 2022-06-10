@@ -82,6 +82,18 @@
 	    width: 150px;
     }
     
+    	
+	/*레이어 팝업 영역*/
+	#popup1, #popup2, #popup3 {
+	 opacity: 0;
+	 display: none;
+	 position: relative;
+	 width: auto;
+	 border: black;
+	 padding: 20px;
+	 background-color: black;
+	}  
+    
 </style>
 
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
@@ -89,8 +101,22 @@
 		function main_movie_list(){
 			location.href="main_movie_list";
 		}
-
-
+	      
+		$(function(){
+			$("#ad1").click(function(){ //레이어 팝업 열기 버튼 클릭 시
+				$('#popup1').bPopup(); //  
+			});
+		});
+		$(function(){
+			$("#ad2").click(function(){ //레이어 팝업 열기 버튼 클릭 시
+				$('#popup2').bPopup(); //  
+			});
+		});
+		$(function(){
+			$("#ad3").click(function(){ //레이어 팝업 열기 버튼 클릭 시
+				$('#popup3').bPopup(); //  
+			});
+		});
     </script>
 </head>
 <body>
@@ -105,14 +131,29 @@
 			</div>
 			<div class="carousel-inner">
 			  <div class="carousel-item active">
-				<img src="https://caching2.lottecinema.co.kr/lotte_image/2022/Witch/Witch_1920774.jpg" class="d-block w-100" alt="...">
+				<img src="https://caching2.lottecinema.co.kr/lotte_image/2022/Witch/Witch_1920774.jpg" class="d-block w-100" alt="..." id="ad1">
 			  </div>
+			            <div id="popup1">
+						   <p>
+						   	 <iframe width="1280" height="720" src="https://www.youtube.com/embed/Iif1qC2GRGs?autoplay=1&mute=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+						   </p>
+						</div>
 			  <div class="carousel-item">
-				<img src="https://caching2.lottecinema.co.kr/lotte_image/2022/Ong/Top_1920774.jpg" class="d-block w-100" alt="...">
+				<img src="https://caching2.lottecinema.co.kr/lotte_image/2022/Ong/Top_1920774.jpg" class="d-block w-100" alt="..." id="ad2">
 			  </div>
+			            <div id="popup2">
+						   <p>
+						   	 <iframe width="1280" height="720" src="https://www.youtube.com/embed/Mrj9XACVJ8U?autoplay=1&mute=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+						   </p>
+						</div>
 			  <div class="carousel-item">
-				<img src="https://caching2.lottecinema.co.kr/lotte_image/2022/Buz/0531/Buz_1920774.jpg" class="d-block w-100" alt="...">
+				<img src="https://caching2.lottecinema.co.kr/lotte_image/2022/Buz/0531/Buz_1920774.jpg" class="d-block w-100" alt="..." id="ad3">
 			  </div>
+			            <div id="popup3">
+						   <p>
+						     <iframe width="1280" height="720" src="https://www.youtube.com/embed/xTrGcHuD_C4?autoplay=1&mute=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+						   </p>
+						</div>
 			</div>
 			<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
 			  <span class="carousel-control-prev-icon" aria-hidden="true"></span>

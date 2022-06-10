@@ -132,7 +132,6 @@ public class Reg_movie_Controller {
 					}
 				}
 			
-//			service.edit_movie(param);
 			return "redirect:movie_list";	
 		}
 		
@@ -141,18 +140,19 @@ public class Reg_movie_Controller {
 	@RequestMapping(value = "/del_movie")
 	public String del_movie(@RequestParam HashMap<String, String> param, Model model) {
 		service.del_movie(param);
+		service.del_movieimg(param);
 		return "redirect:movie_list";	
 	}
 	
 	//0526 에이젝스 사용시 첫화면. 기본값은 order by 최신순 - 근지 - 이게 필요 없어짐
-@RequestMapping("/movie_list")
-//@RequestMapping("/reg_movie/movie_list")
-public String movie_list(HttpServletRequest request, Model model) {
-	System.out.println("request 값 제대로 나옴??? movie_list ===>"+request.getParameter("kind"));
-	ArrayList<MovieDto> list = service.list();
-	model.addAttribute("list", list);
-	return "reg_movie/movie_list";
-}
+	@RequestMapping("/movie_list")
+	//@RequestMapping("/reg_movie/movie_list")
+	public String movie_list(HttpServletRequest request, Model model) {
+		System.out.println("request 값 제대로 나옴??? movie_list ===>"+request.getParameter("kind"));
+		ArrayList<MovieDto> list = service.list();
+		model.addAttribute("list", list);
+		return "reg_movie/movie_list";
+	}
 
 	@RequestMapping("/ajax")
 	@ResponseBody

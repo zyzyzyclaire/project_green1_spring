@@ -90,6 +90,20 @@ public class GoodsServiceImpl implements GoodsService{
 		GoodsDao dao = sqlSession.getMapper(GoodsDao.class);
 		dao.edit_goodsimg(param);
 	}
+
+	@Override
+	public void del_goodsimg(HashMap<String, String> param) {
+		GoodsDao dao = sqlSession.getMapper(GoodsDao.class);
+		dao.del_goodsimg(param);
+		
+	}
+
+	@Override
+	public ArrayList<GoodsDto> getGoods_section(HashMap<String, String> param) {
+		GoodsDao dao = sqlSession.getMapper(GoodsDao.class);
+		ArrayList<GoodsDto> dto = dao.getGoods_section(param);
+		return  dto;
+	}
 	
 
 	

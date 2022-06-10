@@ -51,6 +51,27 @@ public class GoodsController {
 		
 		return "goods/goodsList";
 	}
+	
+	@RequestMapping(value = "goodsList_section", method = RequestMethod.GET)
+	public String goodsList_section(@RequestParam HashMap<String, String> param, Locale locale, Model model) {
+		String name = null;
+		String g_section = param.get("g_section");
+		
+		if (g_section.equals("1")) {
+			name="팝콘";
+		} else if (g_section.equals("2")) {
+			name="음료";
+		} else if (g_section.equals("3")) {
+			name="스낵";
+		}
+		
+		ArrayList<GoodsDto> list = goodsService.getGoods_section(param);
+		
+		model.addAttribute("name", name);
+		model.addAttribute("list", list);
+		
+		return "main/main_goods_list";
+	}
 
 	@RequestMapping(value = "/upload")
 	public String requestupload2(MultipartHttpServletRequest mtfRequest, HttpServletRequest request ,@RequestParam HashMap<String, String> param) throws IllegalStateException, IOException {
@@ -90,10 +111,8 @@ public class GoodsController {
 			
 			}else {
 				mf.transferTo(new File(safeFile));
-				
 				param.put("img_2", filename);
-				
-					goodsService.insertGoodsImg(param);
+				goodsService.insertGoodsImg(param);
 			}
 			
 		}
@@ -227,10 +246,8 @@ public class GoodsController {
 			}else {
 				mf.transferTo(new File(safeFile));
 				param.put("img_2", filename);
-				
 				goodsService.edit_goodsimg(param);
 			}
-			
 		}
 		
 		return "redirect:goodsList";	
@@ -242,6 +259,7 @@ public class GoodsController {
 	@RequestMapping(value = "/del_goods")
 	public String del_goods(@RequestParam HashMap<String, String> param, Model model) {
 		goodsService.del_goods(param);
+		goodsService.del_goodsimg(param);
 		return "redirect:goodsList";	
 	}
 }

@@ -118,4 +118,11 @@ public class Reg_movie_Service_impl implements Reg_movie_Service {
 		Reg_movie_Dao dao = sqlSession.getMapper(Reg_movie_Dao.class);
 		dao.edit_movieimg(param);
 	}
+
+	@Override
+	public void del_movieimg(HashMap<String, String> param) {
+		Reg_movie_Dao dao = sqlSession.getMapper(Reg_movie_Dao.class);
+		dao.del_movieimg(param);
+		
+	}
 }

@@ -76,9 +76,14 @@
             list-style: none;
         }
     /* a태그에 텍스트 밑줄을 없애고 색상을 #333 */
-        .header_a {
+        .header_a, .a_movie_list, .a_goods_list {
             text-decoration: none;
             color:#333;
+        }
+        
+        .li_movie_list, .li_goods_list {
+        	margin-top: 7px;
+        	margin-right: 20px;
         }
         
         .navbar {
@@ -209,7 +214,7 @@
       }
       
 	$(function(){
-		$(".hi").click(function(){ //레이어 팝업 열기 버튼 클릭 시
+		$(".ad").click(function(){ //레이어 팝업 열기 버튼 클릭 시
 			$('#popup').bPopup(); //  
 		});
 				
@@ -237,12 +242,11 @@
                 <div id="TopBarWrapper" class="sect-head-ad">
                     <div class="top_extend_ad_wrap">
                         <div class="adreduce" id="adReduce">                    
-                           <!--  <iframe src="//ad.cgv.co.kr/NetInsight/html/CGV/CGV_201401/main@TopBar_EX" width="100%" height="80" title="" frameborder="0" scrolling="no" topmargin="0" leftmargin="0" marginwidth="0" marginheight="0" name="TopBanner" id="TopBanner"></iframe> -->
-                        	<img src="https://adimg.cgv.co.kr/images/202205/Witch2/0602_980x80.jpg" class="hi">
+                        	<img src="https://adimg.cgv.co.kr/images/202205/Witch2/0602_980x80.jpg" class="ad">
                         </div>
                         <div id="popup">
 						   <p>
-						     <iframe src='https://tv.naver.com/embed/26947241?autoPlay=true' frameborder='no' scrolling='no' marginwidth='0' marginheight='0' WIDTH='544' HEIGHT='306' allow='autoplay' allowfullscreen></iframe>
+						   	 <iframe width="1280" height="720" src="https://www.youtube.com/embed/Iif1qC2GRGs?autoplay=1&mute=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 						   </p>
 						</div>
                         <div class="adextend" id="adExtend"></div>
@@ -273,7 +277,7 @@
 	        %>
 		        <ul class="header_login">
 		          <li class="header_con"><a href="logOut" class="header_a"><img src="https://img.cgv.co.kr/R2014/images/common/ico/loginPassword.png" alt="로그아웃" class="cgv_img"/><span>로그아웃</span></a></li>
-		            <li class="header_con"><a href="cartlist?u_id=<%=u_id%>" class="header_a"><img src="https://cdn-icons.flaticon.com/png/512/2997/premium/2997834.png?token=exp=1654572631~hmac=808157ccee560e484daf3e6b70424210" alt="장바구니" class="cgv_img" id="cart_img"/><span>장바구니</span></a></li>
+		            <li class="header_con"><a href="cartlist?u_id=<%=u_id%>" class="header_a"><img src="https://cdn.icon-icons.com/icons2/1760/PNG/512/4105931-add-to-cart-buy-cart-sell-shop-shopping-cart_113919.png" alt="장바구니" class="cgv_img" id="cart_img"/><span>장바구니</span></a></li>
 		            <li class="header_con"><a href="userPage?u_id=<%=u_id%>" class="header_a"><img src="https://img.cgv.co.kr/R2014/images/common/ico/loginMember.png" alt="마이페이지" class="cgv_img"/><span>마이페이지</span></a></li>
 		            <li class="header_con"><a href="#" class="header_a"><img src="https://img.cgv.co.kr/R2014/images/common/ico/loginCustomer.png" alt="고객센터" class="cgv_img"/><span>고객센터</span></a></li>
 		        </ul>
@@ -309,12 +313,9 @@
 		            <span class="dropdown_span">스토어</span>
 		          </a>
 		          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-		             <li><a class="dropdown-item" href="goodsList">영화관람권</a></li>
-		            <li><a class="dropdown-item" href="goodsList">기프트카드</a></li>
-		            <li><a class="dropdown-item" href="goodsList">콤보</a></li>
-		            <li><a class="dropdown-item" href="goodsList">팝콘</a></li>
-		            <li><a class="dropdown-item" href="goodsList">음료</a></li>
-		            <li><a class="dropdown-item" href="goodsList">스낵</a></li>
+		             <li><a class="dropdown-item" href="goodsList_section?g_section=1">팝콘</a></li>
+		             <li><a class="dropdown-item" href="goodsList_section?g_section=2">음료</a></li>
+		             <li><a class="dropdown-item" href="goodsList_section?g_section=3">스낵</a></li>
 		          </ul>
 		        </li>
 		        <li class="nav-item dropdown">
@@ -328,9 +329,6 @@
 		             <li><a class="dropdown-item" href="reviewList">reivew</a></li>
 		            <!-- <li><a class="dropdown-item" href="#">영화/예매</a></li>
 		            <li><a class="dropdown-item" href="#">멤버십</a></li> -->
-		            
-		            
-		            <li><a class="dropdown-item" href="review">제휴할인</a></li>
 		          </ul>
 		        </li>
 
@@ -339,15 +337,15 @@
 					
 				} else if(u_id.equals("admin")) {
 			%>
-			        <li>
-			          <a href="movie_list">
-			            <span class="dropdown_span">영화 리스트</span>
+			        <li class="li_movie_list">
+			          <a href="movie_list" class="a_movie_list">
+			            <span class="dropdown_span">[관리자] 영화 리스트</span>
 			          </a>
 			        </li>
 			        &nbsp;&nbsp;&nbsp;&nbsp;
-			        <li>
-			         <a href="goodsList">
-			            <span class="dropdown_span">상품 리스트</span>
+			        <li class="li_goods_list">
+			         <a href="goodsList" class="a_goods_list">
+			            <span class="dropdown_span">[관리자] 상품 리스트</span>
 			          </a>
 			        </li>
 			

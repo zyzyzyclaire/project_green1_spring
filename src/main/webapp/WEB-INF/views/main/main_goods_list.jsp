@@ -84,65 +84,40 @@
 <div class="wrap-movie-chart">
         <!-- Heading Map Multi -->
         <div class="tit-heading-wrap" style="border: none">
-            <h3 >무비차트</h3>
+            <h3 >${name }</h3>
         </div>
         
-        <!-- //Heading Map Multi -->
-        
-        <!-- Sorting -->
-        <form method="post" action="sort_check">
-	        <div class="sect-sorting">
-	            <label for="order_type" class="hidden">정렬</label>
-	            <select id="order_type" name="kind">
-					<option title="현재 선택됨" selected value="최신순">최신순</option>
-	                <option value="오래된순">오래된순</option>
-	                <option value="인기순">인기순</option>
-	            </select>
-	            <button type="submit" class="round gray"><span>GO</span></button>
-	        </div>
-        </form>
-        <!-- //Sorting -->
         <div class="sect-movie-chart">
             <ol class="movie_list_ol">
             
         <c:forEach items="${list }" var="dto" varStatus="status">
-                <li class="movie_list_li" onClick = "location.href='movieDisplay?m_code=${dto.m_code}'"> 
+                <li class="movie_list_li" onclick = "location.href='goodsDisplay?g_code=${dto.g_code}'"> 
                     <div class="box-image" >
-                        <strong class="rank" id="rank_color">No.${status.index +1}</strong>	
                         <a href="#">
                             <span class="thumb-image">
-                                <img src='${pageContext.request.contextPath}/resources/${dto.m_position}' onerror="errorImage(this)"/>
+                                <img src='${pageContext.request.contextPath}/resources/${dto.img_1}'/>
                             </span>
                             
                         </a>
                     </div>
                     
                     <div class="box-contents">
-                        <strong class="title">${dto.m_title }</strong>
+                        <strong class="title">${dto.g_name }</strong>
 
                         <div class="score">
-                            <strong class="percent">평점<span>${dto.m_rate }</span></strong>
+                            <strong class="percent">${dto.g_code }원</strong>
                         </div>
-
-                        <span class="txt-info">
-                            <strong>
-                                <fmt:formatDate pattern="yyyy-MM-dd" value="${dto.m_date }" /> 
-                                <span>개봉</span>
-                                
-                            </strong>
-                        </span>
-                        <span class="like"> 
-                            <a class="link-reservation" href="#">예매</a>
-                        </span>
                     </div>    
                 </li>
 		</c:forEach>
+                
                 
 			</ol>
 		</div>
 
 <!-- 0607 제이쿼리 실행시키기 위해 - 근지 -->
 <input type="hidden" class="sort_name" value="${sort_name }">
+
 <jsp:include page="mainFooter.jsp" flush="false"></jsp:include>
 </body>
 </html>

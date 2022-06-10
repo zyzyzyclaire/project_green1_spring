@@ -22,4 +22,6 @@ public interface GoodsService {
 	
 	public void edit_goods(HashMap<String, String> param);
 	public void edit_goodsimg(HashMap<String, String> param);
+	public void del_goodsimg(HashMap<String, String> param);
+	public ArrayList<GoodsDto> getGoods_section(HashMap<String, String> param);
 }

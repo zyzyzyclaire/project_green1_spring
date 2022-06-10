@@ -26,9 +26,6 @@
  		display: flex;
  	}
  	
- 	.footer_hr {
- 		background-color: rgb(136, 136, 136);
- 	}
  	.u1, .u2 {
  		list-style: none;
  	}
@@ -37,7 +34,6 @@
 </head>
 <body>
 	
-	<hr class="footer_hr">
 	<div class="footerdiv" id="footerdiv">
 		<div class="footerdiv1">
 			<ul class="u1">

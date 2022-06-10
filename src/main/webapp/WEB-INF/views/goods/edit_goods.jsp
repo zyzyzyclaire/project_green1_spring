@@ -81,6 +81,16 @@
 					<td>상품 가격</td><td><input type="text" name="g_price" value="${dto.g_price}" class="form-control"></td>
 				</tr>
 				<tr>
+					<td>상품 카테고리</td>
+					<td>
+						<select name="g_section">
+							<option value="1">팝콘</option>
+							<option value="2">음료</option>
+							<option value="3">스낵</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
 					<td>상품 사진</td><td><input type="button" class="btn1" value="파일넣기">
 					<input type="file" name="file" multiple="multiple" class="pic1_btn"></td>
 				</tr>

@@ -86,6 +86,9 @@
 		set m_originimg=#{m_originimg}, m_pics=#{m_pics}
 		where m_code=#{m_code}
     </insert>
+     <insert id="del_movieimg" parameterType="hashmap">
+        delete movieimg where m_code=#{m_code}
+    </insert>
 
     
 </mapper>

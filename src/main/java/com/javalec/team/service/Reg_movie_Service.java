@@ -23,4 +23,5 @@ public interface Reg_movie_Service {
 	 public ArrayList<MovieDto> getStillCut(HashMap<String, String> param);
 	 
 	public void edit_movieimg(HashMap<String, String> param);
+	public void del_movieimg(HashMap<String, String> param);
 }
